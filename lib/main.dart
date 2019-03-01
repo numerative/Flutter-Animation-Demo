@@ -46,10 +46,15 @@ class _AnimatedCircle extends State<Circle> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: InkWell(
-        onTap: () {
+      child: GestureDetector(
+        onTapDown: (t) {
           setState(() {
             measurement = measurement * 0.8;
+          });
+        },
+        onTapUp: (t) {
+          setState(() {
+            measurement = 100;
           });
         },
         child: AnimatedContainer(
