@@ -58,7 +58,7 @@ class _AnimatedCircle extends State<Circle> {
           });
         },
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 500),
+          duration: Duration(milliseconds: 100),
           width: measurement,
           height: measurement,
           decoration: new BoxDecoration(
