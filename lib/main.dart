@@ -43,11 +43,11 @@ class Circle extends StatefulWidget {
 class _AnimatedCircle extends State<Circle> {
   double measurement = 100;
   double x2 = 0;
-  double y2 = -0.5;
-  double x1 = -0.7;
-  double y1 = -0.3;
-  double x3 = 0.7;
-  double y3 = -0.3;
+  double y2 = 0;
+  double x1 = 0;
+  double y1 = 0;
+  double x3 = 0;
+  double y3 = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class _AnimatedCircle extends State<Circle> {
               width: 75,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(color: Colors.black),
+                color: Colors.red,
               ),
             ),
           ),
@@ -109,12 +109,17 @@ class _AnimatedCircle extends State<Circle> {
               onTapDown: (t) {
                 setState(() {
                   measurement = measurement * 0.8;
-                  y2 = -0.5;
                 });
               },
               onTapUp: (t) {
                 setState(() {
                   measurement = 100;
+                  x2 = 0;
+                  y2 = -0.5;
+                  x1 = -0.7;
+                  y1 = -0.3;
+                  x3 = 0.7;
+                  y3 = -0.3;
                 });
               },
               child: AnimatedContainer(
