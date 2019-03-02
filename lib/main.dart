@@ -42,30 +42,55 @@ class Circle extends StatefulWidget {
 
 class _AnimatedCircle extends State<Circle> {
   double measurement = 100;
+  double x = 0;
+  double y = 0;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: GestureDetector(
-        onTapDown: (t) {
-          setState(() {
-            measurement = measurement * 0.8;
-          });
-        },
-        onTapUp: (t) {
-          setState(() {
-            measurement = 100;
-          });
-        },
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 100),
-          width: measurement,
-          height: measurement,
-          decoration: new BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.blue,
+      child: Stack(
+        children: <Widget>[
+          AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            alignment: Alignment(x, y),
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 0),
+              height: 75,
+              width: 75,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.red,
+              ),
+            ),
           ),
-        ),
+          Align(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              onTapDown: (t) {
+                setState(() {
+                  measurement = measurement * 0.8;
+                  y = -0.5;
+                });
+              },
+              onTapUp: (t) {
+                setState(() {
+                  measurement = 100;
+                });
+              },
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 100),
+                alignment: Alignment.center,
+                width: measurement,
+                height: measurement,
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+          ),
+
+        ],
       ),
     );
   }
