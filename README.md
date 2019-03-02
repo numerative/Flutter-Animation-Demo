@@ -1,6 +1,10 @@
 # animation_demo
 
-A new Flutter application.
+![Master Branch Animation](animation-master.gif?raw=true "Animation - Master Branch")
+_Master Branch_
+
+![Line Animation Branch Animation](animation-line-animation.gif?raw=true "Animation - Line Animation Branch")
+_Line Animation Branch_
 
 ## Getting Started
 
