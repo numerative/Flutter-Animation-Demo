@@ -93,52 +93,38 @@ class _AnimatedCircle extends State<Circle>
     return Center(
       child: Stack(
         children: <Widget>[
-          Align(
-            child: Container(
-              height: 250,
-              width: 250,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(),
-              ),
-            ),
-          ),
-          AnimatedContainer(
-            duration: Duration(milliseconds: 0),
+          Container(
             alignment: Alignment(animation2.value, animation.value),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 0),
+            child: Container(
               height: sizeAnimation.value,
               width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red,
+                color: Colors.blue,
               ),
             ),
           ),
           AnimatedContainer(
             duration: Duration(milliseconds: 500),
             alignment: Alignment(x2, y2),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 0),
+            child: Container(
               height: sizeAnimation.value,
               width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red,
+                color: Colors.blue,
               ),
             ),
           ),
           AnimatedContainer(
             duration: Duration(milliseconds: 500),
             alignment: Alignment(x3, y3),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 0),
+            child: Container(
               height: sizeAnimation.value,
               width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.red,
+                color: Colors.blue,
               ),
             ),
           ),
@@ -155,8 +141,6 @@ class _AnimatedCircle extends State<Circle>
                   measurement = 100;
                   x2 = 0;
                   y2 = -0.5;
-                  x1 = -0.7;
-                  y1 = -0.3;
                   x3 = 0.7;
                   y3 = -0.3;
                   animationController.forward();
