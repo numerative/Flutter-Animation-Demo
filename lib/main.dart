@@ -36,8 +36,7 @@ class Circle extends StatefulWidget {
   State<StatefulWidget> createState() => _AnimatedCircle();
 }
 
-class _AnimatedCircle extends State<Circle>
-    with TickerProviderStateMixin {
+class _AnimatedCircle extends State<Circle> with TickerProviderStateMixin {
   Animation animation, animation2, sizeAnimation;
   AnimationController animationController, sizeAnimationController;
   double measurement = 100;
@@ -47,6 +46,7 @@ class _AnimatedCircle extends State<Circle>
   double y1 = 0;
   double x3 = 0;
   double y3 = 0;
+  double height = 0;
 
   @override
   void initState() {
@@ -71,9 +71,7 @@ class _AnimatedCircle extends State<Circle>
     sizeAnimation =
     Tween(begin: 30.0, end: 75.0).animate(sizeAnimationController)
       ..addListener(() {
-        setState(() {
-
-        });
+        setState(() {});
       });
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
@@ -93,6 +91,57 @@ class _AnimatedCircle extends State<Circle>
     return Center(
       child: Stack(
         children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.only(bottom: 250.0),
+            child: Align(
+              alignment: AlignmentDirectional.bottomCenter,
+              child: AnimatedContainer(
+                duration: Duration(milliseconds: 500),
+                height: height,
+                width: 5,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Colors.red,
+                ),
+              ),
+            ),
+          ),
+          RotationTransition(
+            turns: AlwaysStoppedAnimation(-55 / 360),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 250.0),
+              child: Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  height: height,
+                  width: 5,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          RotationTransition(
+            turns: AlwaysStoppedAnimation(55 / 360),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 250.0),
+              child: Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  height: height,
+                  width: 5,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    color: Colors.red,
+                  ),
+                ),
+              ),
+            ),
+          ),
           Container(
             alignment: Alignment(animation2.value, animation.value),
             child: Container(
@@ -143,6 +192,7 @@ class _AnimatedCircle extends State<Circle>
                   y2 = -0.5;
                   x3 = 0.7;
                   y3 = -0.3;
+                  height = 175;
                   animationController.forward();
                 });
               },
