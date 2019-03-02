@@ -42,17 +42,57 @@ class Circle extends StatefulWidget {
 
 class _AnimatedCircle extends State<Circle> {
   double measurement = 100;
-  double x = 0;
-  double y = 0;
+  double x2 = 0;
+  double y2 = -0.5;
+  double x1 = -0.7;
+  double y1 = -0.3;
+  double x3 = 0.7;
+  double y3 = -0.3;
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Stack(
         children: <Widget>[
+          Align(
+            child: Container(
+              height: 250,
+              width: 250,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(),
+              ),
+            ),
+          ),
           AnimatedContainer(
             duration: Duration(milliseconds: 500),
-            alignment: Alignment(x, y),
+            alignment: Alignment(x1, y1),
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 0),
+              height: 75,
+              width: 75,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: Colors.black),
+              ),
+            ),
+          ),
+          AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            alignment: Alignment(x2, y2),
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 0),
+              height: 75,
+              width: 75,
+              decoration: new BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.red,
+              ),
+            ),
+          ),
+          AnimatedContainer(
+            duration: Duration(milliseconds: 500),
+            alignment: Alignment(x3, y3),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 0),
               height: 75,
@@ -69,7 +109,7 @@ class _AnimatedCircle extends State<Circle> {
               onTapDown: (t) {
                 setState(() {
                   measurement = measurement * 0.8;
-                  y = -0.5;
+                  y2 = -0.5;
                 });
               },
               onTapUp: (t) {
