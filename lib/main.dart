@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -35,7 +36,10 @@ class Circle extends StatefulWidget {
   State<StatefulWidget> createState() => _AnimatedCircle();
 }
 
-class _AnimatedCircle extends State<Circle> {
+class _AnimatedCircle extends State<Circle>
+    with SingleTickerProviderStateMixin {
+  Animation animation, animation2;
+  AnimationController animationController;
   double measurement = 100;
   double x2 = 0;
   double y2 = 0;
@@ -43,6 +47,38 @@ class _AnimatedCircle extends State<Circle> {
   double y1 = 0;
   double x3 = 0;
   double y3 = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    animation = Tween(begin: 0.0, end: -0.3).animate(animationController)
+      ..addListener(() {
+        setState(() {
+
+        });
+      });
+    animation2 = Tween(begin: 0.0, end: -0.7).animate(animationController)
+      ..addListener(() {
+        setState(() {
+
+        });
+      });
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        animationController.reverse();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +96,8 @@ class _AnimatedCircle extends State<Circle> {
             ),
           ),
           AnimatedContainer(
-            duration: Duration(milliseconds: 500),
-            alignment: Alignment(x1, y1),
+            duration: Duration(milliseconds: 0),
+            alignment: Alignment(animation2.value, animation.value),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 0),
               height: 75,
@@ -115,6 +151,7 @@ class _AnimatedCircle extends State<Circle> {
                   y1 = -0.3;
                   x3 = 0.7;
                   y3 = -0.3;
+                  animationController.forward();
                 });
               },
               child: AnimatedContainer(
@@ -129,7 +166,6 @@ class _AnimatedCircle extends State<Circle> {
               ),
             ),
           ),
-
         ],
       ),
     );
