@@ -37,9 +37,9 @@ class Circle extends StatefulWidget {
 }
 
 class _AnimatedCircle extends State<Circle>
-    with SingleTickerProviderStateMixin {
-  Animation animation, animation2;
-  AnimationController animationController;
+    with TickerProviderStateMixin {
+  Animation animation, animation2, sizeAnimation;
+  AnimationController animationController, sizeAnimationController;
   double measurement = 100;
   double x2 = 0;
   double y2 = 0;
@@ -55,13 +55,21 @@ class _AnimatedCircle extends State<Circle>
       vsync: this,
       duration: Duration(milliseconds: 500),
     );
+    sizeAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 50),
+    );
     animation = Tween(begin: 0.0, end: -0.3).animate(animationController)
       ..addListener(() {
-        setState(() {
-
-        });
+        setState(() {});
       });
     animation2 = Tween(begin: 0.0, end: -0.7).animate(animationController)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    sizeAnimation =
+    Tween(begin: 30.0, end: 75.0).animate(sizeAnimationController)
       ..addListener(() {
         setState(() {
 
@@ -69,7 +77,7 @@ class _AnimatedCircle extends State<Circle>
       });
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        animationController.reverse();
+        sizeAnimationController.forward();
       }
     });
   }
@@ -100,8 +108,8 @@ class _AnimatedCircle extends State<Circle>
             alignment: Alignment(animation2.value, animation.value),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 0),
-              height: 75,
-              width: 75,
+              height: sizeAnimation.value,
+              width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.red,
@@ -113,8 +121,8 @@ class _AnimatedCircle extends State<Circle>
             alignment: Alignment(x2, y2),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 0),
-              height: 75,
-              width: 75,
+              height: sizeAnimation.value,
+              width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.red,
@@ -126,8 +134,8 @@ class _AnimatedCircle extends State<Circle>
             alignment: Alignment(x3, y3),
             child: AnimatedContainer(
               duration: Duration(milliseconds: 0),
-              height: 75,
-              width: 75,
+              height: sizeAnimation.value,
+              width: sizeAnimation.value,
               decoration: new BoxDecoration(
                 shape: BoxShape.circle,
                 color: Colors.red,
